@@ -31,6 +31,15 @@ link_file "$DOTFILES_DIR/zsh/.zshenv" "$HOME/.zshenv"
 # --- Tmux ---
 link_file "$DOTFILES_DIR/tmux/.tmux.conf" "$HOME/.tmux.conf"
 
+# Install tmux plugins via TPM (if TPM exists)
+TPM_DIR="$HOME/.tmux/plugins/tpm"
+if [ -d "$TPM_DIR" ]; then
+  echo "==> Installing tmux plugins..."
+  "$TPM_DIR/bin/install_plugins"
+else
+  echo "  TPM not found, skipping plugin installation"
+fi
+
 # --- Neovim ---
 mkdir -p "$HOME/.config"
 link_file "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
