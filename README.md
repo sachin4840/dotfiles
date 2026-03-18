@@ -13,7 +13,7 @@ dotfiles/
 ├── scripts/
 │   ├── install.sh     # Install all packages and tools
 │   └── symlink.sh     # Symlink config files to home directory
-├── run.sh             # Main entry point
+├── setup.sh           # Main entry point
 └── README.md
 ```
 
@@ -22,17 +22,37 @@ dotfiles/
 ```bash
 git clone git@github.com:sachin4840/dotfiles.git ~/dotfiles
 cd ~/dotfiles
-./run.sh --all
+./setup.sh --all
 ```
 
 ## Usage
 
 ```bash
-./run.sh --all         # Full setup (install + symlink)
-./run.sh --install     # Install packages only
-./run.sh --symlink     # Create symlinks only
-./run.sh --help        # Show help
+./setup.sh --all         # Full setup (install + symlink)
+./setup.sh --install     # Install packages only
+./setup.sh --symlink     # Create symlinks only (auto-backs up existing files)
+./setup.sh --backup      # Backup current config files only
+./setup.sh --restore     # Restore from a previous backup
+./setup.sh --list        # List available backups
+./setup.sh --help        # Show help
 ```
+
+## Backup & Restore
+
+The symlink script automatically backs up existing config files before replacing them with symlinks. Backups are stored in `~/.dotfiles_backup/` with timestamped directories.
+
+```bash
+# Manually backup before making changes
+./setup.sh --backup
+
+# View available backups
+./setup.sh --list
+
+# Restore if something goes wrong
+./setup.sh --restore
+```
+
+The restore command will show an interactive list of available backups to choose from.
 
 ## What Gets Installed
 

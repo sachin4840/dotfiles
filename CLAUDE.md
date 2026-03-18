@@ -9,10 +9,16 @@ This is a macOS dotfiles repository for setting up a development environment wit
 ## Commands
 
 ```bash
-./run.sh --all         # Full setup (install packages + create symlinks)
-./run.sh --install     # Install packages only (Homebrew, casks, Oh My Zsh, NVM)
-./run.sh --symlink     # Create symlinks only
+./setup.sh --all         # Full setup (install packages + create symlinks)
+./setup.sh --install     # Install packages only (Homebrew, casks, Oh My Zsh, NVM)
+./setup.sh --symlink     # Create symlinks only (auto-backs up existing files)
+./setup.sh --unlink      # Remove symlinks (originals stay in dotfiles repo)
+./setup.sh --backup      # Backup current config files without creating symlinks
+./setup.sh --restore     # Restore config files from a previous backup
+./setup.sh --list        # List available backups
 ```
+
+Backups are stored in `~/.dotfiles_backup/` with timestamped directories (e.g., `20260318_143052`).
 
 ## Pre-commit
 
@@ -23,7 +29,7 @@ pre-commit run --all-files
 
 ## Architecture
 
-- `run.sh` - Main entry point that delegates to scripts in `scripts/`
+- `setup.sh` - Main entry point that delegates to scripts in `scripts/`
 - `scripts/install.sh` - Installs Homebrew, formulae, casks, Oh My Zsh, Powerlevel10k, TPM, and NVM
 - `scripts/symlink.sh` - Creates symlinks from config directories to `$HOME` (with automatic backup of existing files)
 
