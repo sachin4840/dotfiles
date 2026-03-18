@@ -1,0 +1,15 @@
+# ~/.zprofile.local - Machine-specific login shell config (not tracked in git)
+# Copy this file to ~/.zprofile.local and customize for your machine
+
+# --- rbenv ---
+# export PATH="$HOME/.rbenv/bin:$PATH"
+# eval "$(rbenv init -)"
+
+# --- pipx ---
+# export PATH="$PATH:$HOME/.local/bin"
+
+# --- SSH Aliases ---
+# alias myserver='ssh user@IP_ADDRESS -i ~/.ssh/my_key'
+
+# --- Work-specific aliases ---
+# alias vpn='sudo openfortivpn ...'

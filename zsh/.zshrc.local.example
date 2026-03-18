@@ -1,0 +1,16 @@
+# ~/.zshrc.local - Machine-specific zsh config (not tracked in git)
+# Copy this file to ~/.zshrc.local and customize for your machine
+
+# --- Bun ---
+# export BUN_INSTALL="$HOME/.bun"
+# export PATH="$BUN_INSTALL/bin:$PATH"
+# [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+# --- pipx ---
+# export PATH="$PATH:$HOME/.local/bin"
+
+# --- OpenCode ---
+# export PATH="$HOME/.opencode/bin:$PATH"
+
+# --- Custom project aliases ---
+# alias myproject='cd ~/path/to/project'

@@ -25,6 +25,8 @@ FORMULAE=(
   zsh-syntax-highlighting
   font-hack-nerd-font
   pre-commit
+  zoxide
+  fzf
 )
 
 for formula in "${FORMULAE[@]}"; do

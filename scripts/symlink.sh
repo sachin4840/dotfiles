@@ -27,6 +27,7 @@ link_file() {
 link_file "$DOTFILES_DIR/zsh/.zshrc" "$HOME/.zshrc"
 link_file "$DOTFILES_DIR/zsh/.zprofile" "$HOME/.zprofile"
 link_file "$DOTFILES_DIR/zsh/.zshenv" "$HOME/.zshenv"
+link_file "$DOTFILES_DIR/zsh/.p10k.zsh" "$HOME/.p10k.zsh"
 
 # --- Tmux ---
 link_file "$DOTFILES_DIR/tmux/.tmux.conf" "$HOME/.tmux.conf"
