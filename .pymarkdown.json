@@ -1,0 +1,19 @@
+{
+  "plugins": {
+    "line-length": {
+      "enabled": false
+    },
+    "blanks-around-fences": {
+      "enabled": false
+    },
+    "blanks-around-headings": {
+      "enabled": false
+    },
+    "blanks-around-lists": {
+      "enabled": false
+    },
+    "fenced-code-language": {
+      "enabled": false
+    }
+  }
+}
