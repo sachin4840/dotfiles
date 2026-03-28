@@ -1,6 +1,6 @@
 # Dotfiles
 
-Mac development environment setup — zsh, neovim, tmux, git, and more.
+Mac development environment setup — zsh, neovim, tmux, Claude Code, and more.
 
 ## Structure
 
@@ -9,7 +9,7 @@ dotfiles/
 ├── zsh/               # Zsh configuration (.zshrc, .zprofile, .zshenv)
 ├── nvim/              # Neovim configuration
 ├── tmux/              # Tmux configuration
-├── git/               # Git configuration (.gitconfig, .gitignore_global)
+├── claude/            # Claude Code configuration (settings, commands)
 ├── scripts/
 │   ├── install.sh     # Install all packages and tools
 │   └── symlink.sh     # Symlink config files to home directory
@@ -57,7 +57,7 @@ The restore command will show an interactive list of available backups to choose
 ## What Gets Installed
 
 ### Homebrew Formulae
-neovim, tmux, bat, tree, zsh-autosuggestions, zsh-syntax-highlighting, font-hack-nerd-font
+neovim, tmux, bat, tree, zsh-autosuggestions, zsh-syntax-highlighting, font-hack-nerd-font, pre-commit, zoxide, fzf, terminal-notifier
 
 ### Homebrew Casks
 iterm2, rectangle, stats, alt-tab

@@ -33,13 +33,17 @@ pre-commit run --all-files
 - `scripts/install.sh` - Installs Homebrew, formulae, casks, Oh My Zsh, Powerlevel10k, TPM, and NVM
 - `scripts/symlink.sh` - Creates symlinks from config directories to `$HOME` (with automatic backup of existing files)
 
-Config directories (`zsh/`, `nvim/`, `tmux/`) are symlinked to their standard locations:
+Config directories (`zsh/`, `nvim/`, `tmux/`, `claude/`) are symlinked to their standard locations:
 - `zsh/.zshrc` → `~/.zshrc`
 - `zsh/.zprofile` → `~/.zprofile`
 - `zsh/.zshenv` → `~/.zshenv`
 - `zsh/.p10k.zsh` → `~/.p10k.zsh`
 - `tmux/.tmux.conf` → `~/.tmux.conf`
 - `nvim/` → `~/.config/nvim/`
+- `claude/settings.json` → `~/.claude/settings.json`
+- `claude/CLAUDE.md` → `~/.claude/CLAUDE.md`
+- `claude/commands/` → `~/.claude/commands/`
+- `claude/agents/` → `~/.claude/agents/`
 
 ## Local Config Pattern
 

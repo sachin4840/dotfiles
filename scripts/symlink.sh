@@ -12,6 +12,10 @@ declare -a SYMLINK_PAIRS=(
   "$DOTFILES_DIR/zsh/.p10k.zsh:$HOME/.p10k.zsh"
   "$DOTFILES_DIR/tmux/.tmux.conf:$HOME/.tmux.conf"
   "$DOTFILES_DIR/nvim:$HOME/.config/nvim"
+  "$DOTFILES_DIR/claude/settings.json:$HOME/.claude/settings.json"
+  "$DOTFILES_DIR/claude/CLAUDE.md:$HOME/.claude/CLAUDE.md"
+  "$DOTFILES_DIR/claude/commands:$HOME/.claude/commands"
+  "$DOTFILES_DIR/claude/agents:$HOME/.claude/agents"
 )
 
 usage() {
@@ -217,6 +221,15 @@ do_restore() {
         nvim)
           dest="$HOME/.config/nvim"
           ;;
+        settings.json|CLAUDE.md)
+          dest="$HOME/.claude/$basename"
+          ;;
+        commands)
+          dest="$HOME/.claude/commands"
+          ;;
+        agents)
+          dest="$HOME/.claude/agents"
+          ;;
         *)
           echo "  Skipping unknown file: $basename"
           continue
@@ -274,8 +287,9 @@ do_link() {
   backup_dir=$(create_backup_dir)
   local backed_up=0
 
-  # Ensure .config directory exists
+  # Ensure target directories exist
   mkdir -p "$HOME/.config"
+  mkdir -p "$HOME/.claude"
 
   for pair in "${SYMLINK_PAIRS[@]}"; do
     local src="${pair%%:*}"

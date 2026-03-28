@@ -27,6 +27,7 @@ FORMULAE=(
   pre-commit
   zoxide
   fzf
+  terminal-notifier
 )
 
 for formula in "${FORMULAE[@]}"; do

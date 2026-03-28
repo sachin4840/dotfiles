@@ -4,3 +4,7 @@
 *~
 .env
 .env.*
+
+# Claude Code - GSD plugin managed files (auto-generated)
+claude/agents/gsd-*
+claude/commands/gsd/
