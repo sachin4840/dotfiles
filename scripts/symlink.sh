@@ -6,9 +6,7 @@ BACKUP_BASE_DIR="$HOME/.dotfiles_backup"
 
 # Files/directories to manage
 declare -a SYMLINK_PAIRS=(
-  "$DOTFILES_DIR/zsh/.zshrc:$HOME/.zshrc"
-  "$DOTFILES_DIR/zsh/.zprofile:$HOME/.zprofile"
-  "$DOTFILES_DIR/zsh/.zshenv:$HOME/.zshenv"
+  "$DOTFILES_DIR/zsh/.zshrc_global:$HOME/.zshrc_global"
   "$DOTFILES_DIR/zsh/.p10k.zsh:$HOME/.p10k.zsh"
   "$DOTFILES_DIR/tmux/.tmux.conf:$HOME/.tmux.conf"
   "$DOTFILES_DIR/nvim:$HOME/.config/nvim"
@@ -27,6 +25,7 @@ Commands:
   unlink    Remove symlinks (keeps original files in dotfiles repo)
   backup    Backup current files without creating symlinks
   restore   Restore from a previous backup
+  reset     Remove symlinks and restore from backup
   list      List available backups
 
 Examples:
@@ -35,6 +34,7 @@ Examples:
   ./scripts/symlink.sh unlink       # Remove symlinks only
   ./scripts/symlink.sh backup       # Only backup, no symlinks
   ./scripts/symlink.sh restore      # Restore from backup
+  ./scripts/symlink.sh reset        # Unlink + restore
   ./scripts/symlink.sh list         # Show available backups
 EOF
 }
@@ -215,7 +215,7 @@ do_restore() {
 
       # Determine destination based on file name
       case "$basename" in
-        .zshrc|.zprofile|.zshenv|.p10k.zsh|.tmux.conf)
+        .zshrc|.zshrc_global|.zprofile|.zshenv|.p10k.zsh|.tmux.conf)
           dest="$HOME/$basename"
           ;;
         nvim)
@@ -254,6 +254,14 @@ do_restore() {
   echo "    Note: You may need to restart your shell for changes to take effect"
 }
 
+# Remove symlinks and restore from backup
+do_reset() {
+  echo "==> Resetting to backup state..."
+  do_unlink
+  echo ""
+  do_restore
+}
+
 # Helper: backup existing file and create symlink
 link_file() {
   local src="$1"
@@ -290,6 +298,20 @@ do_link() {
   # Ensure target directories exist
   mkdir -p "$HOME/.config"
   mkdir -p "$HOME/.claude"
+
+  # Create ~/.zshrc from template if it doesn't exist or is a broken/dotfiles symlink
+  if [ -L "$HOME/.zshrc" ]; then
+    local zshrc_target
+    zshrc_target=$(readlink "$HOME/.zshrc")
+    if [[ "$zshrc_target" == "$DOTFILES_DIR"* ]] || [ ! -e "$HOME/.zshrc" ]; then
+      rm "$HOME/.zshrc"
+      echo "  Removed old ~/.zshrc symlink"
+    fi
+  fi
+  if [ ! -f "$HOME/.zshrc" ]; then
+    cp "$DOTFILES_DIR/zsh/.zshrc.template" "$HOME/.zshrc"
+    echo "  Created ~/.zshrc from template"
+  fi
 
   for pair in "${SYMLINK_PAIRS[@]}"; do
     local src="${pair%%:*}"
@@ -337,6 +359,9 @@ case "${1:-link}" in
     ;;
   restore)
     do_restore
+    ;;
+  reset)
+    do_reset
     ;;
   list)
     do_list

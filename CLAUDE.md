@@ -15,6 +15,7 @@ This is a macOS dotfiles repository for setting up a development environment wit
 ./setup.sh --unlink      # Remove symlinks (originals stay in dotfiles repo)
 ./setup.sh --backup      # Backup current config files without creating symlinks
 ./setup.sh --restore     # Restore config files from a previous backup
+./setup.sh --reset       # Remove symlinks and restore from backup
 ./setup.sh --list        # List available backups
 ```
 
@@ -34,9 +35,7 @@ pre-commit run --all-files
 - `scripts/symlink.sh` - Creates symlinks from config directories to `$HOME` (with automatic backup of existing files)
 
 Config directories (`zsh/`, `nvim/`, `tmux/`, `claude/`) are symlinked to their standard locations:
-- `zsh/.zshrc` → `~/.zshrc`
-- `zsh/.zprofile` → `~/.zprofile`
-- `zsh/.zshenv` → `~/.zshenv`
+- `zsh/.zshrc_global` → `~/.zshrc_global`
 - `zsh/.p10k.zsh` → `~/.p10k.zsh`
 - `tmux/.tmux.conf` → `~/.tmux.conf`
 - `nvim/` → `~/.config/nvim/`
@@ -45,19 +44,15 @@ Config directories (`zsh/`, `nvim/`, `tmux/`, `claude/`) are symlinked to their 
 - `claude/commands/` → `~/.claude/commands/`
 - `claude/agents/` → `~/.claude/agents/`
 
-## Local Config Pattern
+## Zsh Config Pattern
 
-Machine-specific configs go in `.local` files (not tracked in git):
-- `~/.zshrc.local` - Tool paths added by installers (bun, cargo, etc.)
-- `~/.zprofile.local` - SSH aliases, work-specific configs
+`~/.zshrc` is NOT symlinked - it stays as a local file that:
+1. Sources `~/.zshrc_global` (your dotfiles config, symlinked)
+2. Contains machine-specific additions from installers (bun, cargo, etc.)
 
-See `zsh/.zshrc.local.example` and `zsh/.zprofile.local.example` for templates.
+This means when tools modify `~/.zshrc`, no manual cleanup is needed.
 
-**Workflow when installing new tools:**
-1. Tool modifies `~/.zshrc` (your repo file)
-2. Check `git diff zsh/.zshrc`
-3. Move new lines to `~/.zshrc.local`
-4. `git restore zsh/.zshrc`
+On first setup, `~/.zshrc` is created from `zsh/.zshrc.template`.
 
 ## CI
 

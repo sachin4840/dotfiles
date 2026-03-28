@@ -14,6 +14,7 @@ Options:
   --unlink      Remove symlinks (keeps original files in dotfiles repo)
   --backup      Backup current config files without creating symlinks
   --restore     Restore config files from a previous backup
+  --reset       Remove symlinks and restore from backup
   --list        List available backups
   help, -h      Show this help message
 
@@ -24,6 +25,7 @@ Examples:
   ./setup.sh --unlink     # Disconnect symlinks (originals stay in repo)
   ./setup.sh --backup     # Backup current configs before making changes
   ./setup.sh --restore    # Restore from a previous backup
+  ./setup.sh --reset      # Unlink + restore from backup
   ./setup.sh --list       # Show available backups
 EOF
 }
@@ -46,6 +48,10 @@ run_backup() {
 
 run_restore() {
   bash "$DOTFILES_DIR/scripts/symlink.sh" restore
+}
+
+run_reset() {
+  bash "$DOTFILES_DIR/scripts/symlink.sh" reset
 }
 
 run_list() {
@@ -77,6 +83,9 @@ for arg in "$@"; do
       ;;
     --restore)
       run_restore
+      ;;
+    --reset)
+      run_reset
       ;;
     --list)
       run_list

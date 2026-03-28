@@ -1,0 +1,4 @@
+# Source global config from dotfiles
+[ -f ~/.zshrc_global ] && source ~/.zshrc_global
+
+# Machine-specific configs added by installers go below
