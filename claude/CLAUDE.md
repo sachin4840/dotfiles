@@ -7,6 +7,7 @@ This file provides global instructions to Claude Code across all projects.
 - Self-documenting code with clear names
 - Concise responses; minimize explanations
 - Small, PR-ready changes with tests
+- Do not `git commit` changes let me verify and review them
 
 ## Claude Behavior
 - Use `haiku` model for simple searches
