@@ -31,7 +31,34 @@
           }
         ]
       }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/Users/sachin/.claude/hooks/gsd-check-update.js\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/Users/sachin/.claude/hooks/gsd-context-monitor.js\""
+          }
+        ]
+      }
     ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "node \"/Users/sachin/.claude/hooks/gsd-statusline.js\""
+  },
+  "enabledPlugins": {
+    "get-shit-done@get-shit-done": true
   },
   "alwaysThinkingEnabled": true,
   "model": "opus"

@@ -2,21 +2,13 @@
 
 This file provides global instructions to Claude Code across all projects.
 
-## Preferences
+## Rules
+- NO COMMENTS except for genuinely complex logic
+- Self-documenting code with clear names
+- Concise responses; minimize explanations
+- Small, PR-ready changes with tests
 
-- Write clean, maintainable code with minimal comments (code should be self-documenting)
-- Prefer simple solutions over complex abstractions
-- Use modern language features and best practices
-- Follow existing project conventions when working in established codebases
-
-## Safety
-
-- Never commit secrets, API keys, or credentials
-- Always use environment variables for sensitive configuration
-- Review changes before committing
-
-## Communication
-
-- Be concise and direct
-- Explain reasoning when making non-obvious decisions
-- Ask clarifying questions rather than making assumptions
+## Claude Behavior
+- Use `haiku` model for simple searches
+- Use subagents for parallel work
+- Run tests after changes
