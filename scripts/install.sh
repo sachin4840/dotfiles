@@ -28,6 +28,7 @@ FORMULAE=(
   zoxide
   fzf
   terminal-notifier
+  gh
 )
 
 for formula in "${FORMULAE[@]}"; do
