@@ -43,6 +43,7 @@ Config directories (`zsh/`, `nvim/`, `tmux/`, `claude/`) are symlinked to their 
 - `claude/CLAUDE.md` → `~/.claude/CLAUDE.md`
 - `claude/commands/` → `~/.claude/commands/`
 - `claude/agents/` → `~/.claude/agents/`
+- `claude/rules/` → `~/.claude/rules/`
 
 ## Zsh Config Pattern
 

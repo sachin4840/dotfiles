@@ -14,6 +14,7 @@ declare -a SYMLINK_PAIRS=(
   "$DOTFILES_DIR/claude/CLAUDE.md:$HOME/.claude/CLAUDE.md"
   "$DOTFILES_DIR/claude/commands:$HOME/.claude/commands"
   "$DOTFILES_DIR/claude/agents:$HOME/.claude/agents"
+  "$DOTFILES_DIR/claude/rules:$HOME/.claude/rules"
 )
 
 usage() {
@@ -229,6 +230,9 @@ do_restore() {
           ;;
         agents)
           dest="$HOME/.claude/agents"
+          ;;
+        rules)
+          dest="$HOME/.claude/rules"
           ;;
         *)
           echo "  Skipping unknown file: $basename"
